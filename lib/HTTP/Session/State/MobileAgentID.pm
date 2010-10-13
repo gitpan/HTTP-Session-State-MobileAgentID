@@ -2,7 +2,7 @@ package HTTP::Session::State::MobileAgentID;
 use strict;
 use warnings;
 use 5.00800;
-our $VERSION = '0.43';
+our $VERSION = '0.44';
 
 use HTTP::Session::State::Base;
 use HTTP::MobileAgent 0.28;
@@ -82,6 +82,12 @@ instance of L<HTTP::MobileAgent>
 
 check the IP address in the carrier's cidr/ or not?
 see also L<Net::CIDR::MobileJP>
+
+=item cidr
+
+The object have B<get_carrier($ip)> method like L<Net::CIDR::MobileJP>.
+
+If not provided to constructor, this class create new instance of Net::CIDR::MobileJP automatically.
 
 =back
 
