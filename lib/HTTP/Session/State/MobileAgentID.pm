@@ -2,7 +2,7 @@ package HTTP::Session::State::MobileAgentID;
 use strict;
 use warnings;
 use 5.00800;
-our $VERSION = '0.44';
+our $VERSION = '0.45';
 
 use HTTP::Session::State::Base;
 use HTTP::MobileAgent 0.28;
@@ -40,7 +40,9 @@ sub get_session_id {
         }
         return $id;
     } else {
-        die "cannot detect mobile id from: $ma";
+        my $ip = $ENV{REMOTE_ADDR} || (Scalar::Util::blessed($req) ? $req->address : $req->{REMOTE_ADDR}) || 'UNKNOWN';
+        my $ua = $ma->user_agent();
+        die "cannot detect mobile id from: ($ua, $ip)";
     }
 }
 
